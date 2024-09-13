@@ -15,7 +15,7 @@
               <div id="success-message" class="alert alert-success">
                   {{ session('success') }}
               </div>
-          @endif  
+          @endif
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -42,18 +42,18 @@
                   </tr>
                   </thead>
                   <tbody>
+                    @php($count=1)
                     @foreach ($permissions as $permission)
                     <tr>
                     <td></td>
-                    <td>{{$permission->id}}</td>
+                    <td>{{$count++}}</td>
                     <td>{{$permission->title}}</td>
                     <td>
+                        <form action="{{route('permissions.destroy', $permission)}}" method="post">
+                            @csrf
                     <a class="btn btn-xs btn-primary" href="{{route('permissions.show', $permission)}}">{{'view'}}</a>
-                       
+
                     <a class="btn btn-xs btn-info" href="{{route('permissions.edit', $permission)}}">{{'edit'}}</a>
-                       
-                    <form action="{{route('permissions.destroy', $permission)}}" method="post">
-                      @csrf
                       @method('DELETE')
                       <button class="btn btn-xs btn-danger" type="submit" onclick="return confirm('Are you Sure?')">{{'delete'}}</button>
                     </form>

@@ -15,12 +15,11 @@
               <div id="success-message" class="alert alert-success">
                   {{ session('success') }}
               </div>
-          @endif  
+          @endif
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -54,11 +53,9 @@
                     @endforeach
                     </td>
                     <td>
+                        <form action="{{route('roles.destroy', $role)}}" method="post">
                     <a class="btn btn-xs btn-primary" href="{{route('roles.show', $role)}}">{{'view'}}</a>
-                       
                     <a class="btn btn-xs btn-info" href="{{route('roles.edit', $role)}}">{{'edit'}}</a>
-                       
-                    <form action="{{route('roles.destroy', $role)}}" method="post">
                       @csrf
                       @method('DELETE')
                       <button class="btn btn-xs btn-danger" type="submit" onclick="return confirm('Are you Sure?')">{{'delete'}}</button>
