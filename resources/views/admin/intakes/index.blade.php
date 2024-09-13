@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-           <a href="{{route('roles.create')}}" class="btn btn-primary">Add Role</a>
+           <a href="{{route('intake.create')}}" class="btn btn-primary">Add Intake</a>
           </div>
           <div class="col-sm-6">
           @if(session('success'))
@@ -27,7 +27,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Roles List</h3>
+                <h3 class="card-title">Intake List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -37,26 +37,22 @@
                     <th> </th>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Permissions</th>
+                    <th>Academic Year</th>
                     <th> &nbsp; </th>
                   </tr>
                   </thead>
                   <tbody>
                     @php($count=1)
-                    @foreach ($roles as $role)
+                    @foreach ($intakes as $c)
                     <tr>
                     <td></td>
                     <td>{{$count++}}</td>
-                    <td>{{$role->title}}</td>
+                    <td>{{$c->name}}</td>
+                    <td>{{ $c->academic }}</td>
                     <td>
-                    @foreach ($role->permissions as $permission)
-                    <div class="permission " style="background-color:green; display:inline-flex; border-radius:10px; padding-left:3px; padding-right:3px; color:#fff">{{$permission->title}}</div>
-                    @endforeach
-                    </td>
-                    <td>
-                        <form action="{{route('roles.destroy', $role)}}" method="post">
-                    <a class="btn btn-xs btn-primary" href="{{route('roles.show', $role)}}">{{'view'}}</a>
-                    <a class="btn btn-xs btn-info" href="{{route('roles.edit', $role)}}">{{'edit'}}</a>
+                        <form action="{{route('intake.destroy', $c->id)}}" method="post">
+                    <a class="btn btn-xs btn-primary" href="{{route('intake.show', $c->id)}}">{{'view'}}</a>
+                    <a class="btn btn-xs btn-info" href="{{route('intake.edit', $c->id)}}">{{'edit'}}</a>
                       @csrf
                       @method('DELETE')
                       <button class="btn btn-xs btn-danger" type="submit" onclick="return confirm('Are you Sure?')">{{'delete'}}</button>

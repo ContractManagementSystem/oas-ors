@@ -59,6 +59,41 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="nav-icon fa-fw fas fa-book"></i>
+              <p>
+                Settings
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('permissions.index')}}" class="nav-link">
+                  <i class="fa-fw fas fa-unlock-alt nav-icon"></i>
+                  <p>Academic Year</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('intake.index')}}" class="nav-link">
+                  <i class="fa-fw fas fa-briefcase nav-icon"></i>
+                  <p>Intake level</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('campus.index') }}" class="nav-link">
+                  <i class="fa-fw fas fa-user nav-icon"></i>
+                  <p>Campus</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa-fw fas fa-file-alt nav-icon"></i>
+                  <p>Programme</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa-fw fas fa-file-image"></i>
               <p>
                 Forms

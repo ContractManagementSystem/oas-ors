@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>simba</title>
+  <title>Oas Ors</title>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Google Font: Source Sans Pro -->
@@ -162,7 +162,7 @@
             fixedHeader: true,
             responsive: true,
             lengthChange: false,
-            autoWidth: false, 
+            autoWidth: false,
             buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis',
             {
                 text: 'Select all',

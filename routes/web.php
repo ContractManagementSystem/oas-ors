@@ -1,8 +1,14 @@
 <?php
 
-use App\Http\Controllers\RolesController;
-use App\Http\Controllers\WebController;
+use App\Http\Controllers\Admin\AcademicYearController;
+use App\Http\Controllers\Admin\ApplicationLevelController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WebController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\Admin\CampusController;
+use App\Http\Controllers\Admin\IntakeController;
+use App\Http\Controllers\Admin\ProgrammeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +38,15 @@ Route::resource('permissions', App\Http\Controllers\PermissionsController::class
 Route::resource('sitesettings', App\Http\Controllers\SiteSettingsController::class);
 
 /*oas*/
-Route::view('/logins',  view: 'oas/login')->name('logins'); 
-Route::view('/application',  view: 'oas/application')->name('application'); 
-Route::view('/register',  view: 'oas/register')->name('register'); 
-Route::view('/normaltable',  view: 'oas/normaltable')->name('normaltable'); 
-Route::view('/datetable',  view: 'oas/datatable')->name('datatable'); 
+Route::view('/logins',  view: 'oas/login')->name('logins');
+Route::view('/application',  view: 'oas/application')->name('application');
+Route::view('/register',  view: 'oas/register')->name('register');
+Route::view('/normaltable',  view: 'oas/normaltable')->name('normaltable');
+Route::view('/datetable',  view: 'oas/datatable')->name('datatable');
+//campus
+Route::resource('campus',CampusController::class);
+Route::resource('intake', IntakeController::class);
+Route::resource('programme',ProgrammeController::class);
+Route::resource('level', ApplicationLevelController::class);
+Route::resource('academic',AcademicYearController::class);
 });
