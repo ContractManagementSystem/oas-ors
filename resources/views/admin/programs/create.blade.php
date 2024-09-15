@@ -5,7 +5,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      
+
     </section>
 
     <!-- Main content -->
@@ -17,47 +17,95 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create program</h3>
+                <h3 class="card-title"> @if(isset($program))
+                    Edit
+                    @else
+                       Create
+                @endif Programme</h3>
               </div>
               <!-- /.card-header -->
-              @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
               <!-- form start -->
-              <form method="post" action="{{route('programs.store')}}" enctype="multipart/form-data">
+              <form method="post" action="{{route('programme.store')}}" onsubmit="return validateforminputs(this)">
+                <input type="hidden" name="program[id]" value="{{isset($program)?$program->id:'' }}">
                 @csrf
                 <div class="card-body">
+                    <div>
+                @foreach ($errors->all() as $error)
+                    <span class="fs-10 text-danger">{{ $error }}</span><br/>
+                @endforeach
+            </div>
                   <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" name="title">
+                    <label for="title">Programme Name</label>
+                    <input type="text" class="form-control" id="title" name="program[name]" required
+                    value="{{isset($program)?$program->name:''}}">
                   </div>
-
                   <div class="form-group">
-                    <label for="photo">Photo</label>
-                    <input type="file" class="form-control-file" id="photo" name="photo">
+                    <label for="title">Programme Code</label>
+                    <input type="text" class="form-control" id="title" name="program[code]" required
+                    value="{{isset($program)?$program->code:''}}">
                   </div>
-
                   <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" name="description">
+                    <label for="title">Programme Short</label>
+                    <input type="text" class="form-control" id="title" name="program[short]" required
+                    value="{{isset($program)?$program->short:''}}">
                   </div>
-
                   <div class="form-group">
-                    <label for="is_published">Is_Published</label> <br>
-                    <input type="hidden" name="is_published" value="0">
-                    <input style="transform: scale(2); margin:10px;" type="checkbox" id="is_published" name="is_published" value="1" {{ old('is_published') ? 'checked' : '' }}>
-                  </div>
+                    <label for="level">Application Level</label>
+                    <select id="app_level" class="form-control select 2" name="program[app_level]">
+                     <option value=""></option>
+                      @foreach ($level as $acy)
+                      <option
+                      {{selected(isset($program)?$program->app_level:'',$acy->id)}} value="{{$acy->id}}">{{$acy->name}}</option>
+                 @endforeach
+                    </select>
 
+                    </div>
+                  <div class="form-group">
+                    <label for="acy">Academic Year</label>
+                    <select id="acy" class="form-control select 2" name="program[acyr]">
+                     <option value=""></option>
+                      @foreach ($aca as $acy)
+                      <option
+                      {{selected(isset($program)?$program->acyr:'',$acy->id)}} value="{{$acy->id}}">{{$acy->name}}</option>
+                      @endforeach
+                    </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="acy">Campus</label>
+                        <select id="acy" class="form-control select 2" name="program[campus_id]">
+                         <option value=""></option>
+                          @foreach ($campus as $acy)
+                          <option
+                          {{selected(isset($program)?$program->campus_id:'',$acy->id)}} value="{{$acy->id}}">{{$acy->name}}</option>
+                          @endforeach
+                        </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="acy">Intake</label>
+                            <select id="acy" class="form-control select 2" name="program[intake_id]">
+                             <option value=""></option>
+                              @foreach ($intake as $acy)
+                              <option
+                              {{selected(isset($program)?$program->intake_id:'',$acy->id)}} value="{{$acy->id}}">{{$acy->name}}</option>
+                              @endforeach
+                            </select>
+
+                            </div>
                 </div>
+
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                            <button class="btn btn-success btn-load btn-lg save-btn" type="submit">
+                                        <span class="d-flex align-items-center">
+                                            <span class="spinner-border flex-shrink-0 me-2 save-spinner" role="status"
+                                                  style="display: none"></span>
+                                            <span class="flex-grow-1">{{ !isset($user->id) ? 'Save' : 'Update' }}</span>
+                                        </span>
+                            </button>
+
+                        </div>
                 </div>
               </form>
             </div>

@@ -17,16 +17,16 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title"> @if(isset($campus))
+                <h3 class="card-title"> @if(isset($program))
                     Edit
                     @else
                        Create
-                @endif Campus</h3>
+                @endif Programme</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="{{route('campus.store')}}" onsubmit="return validateforminputs(this)">
-                <input type="hidden" name="campus[id]" value="{{isset($campus)?$campus->id:'' }}">
+              <form method="post" action="{{route('programme.store')}}" onsubmit="return validateforminputs(this)">
+                <input type="hidden" name="programme[id]" value="{{isset($program)?$program->id:'' }}">
                 @csrf
                 <div class="card-body">
                     <div>
@@ -34,12 +34,19 @@
                     <span class="fs-10 text-danger">{{ $error }}</span><br/>
                 @endforeach
             </div>
-                  <div class="form-group">
-                    <label for="title">Campus Name</label>
-                    <input type="text" class="form-control" id="title" name="campus[name]" required
-                    value="{{isset($campus)?$campus->name:''}}">
-                  </div>
 
+            <div class="form-group">
+                <label for="level">Application Level</label>
+                <select class="form-control select 2" name="level[name]">
+                  <option value=""></option>
+                  <option{{selected(isset($level)?$level->name:'',\App\Models\Admin\Applevel::BACHELOR_LEVEL)}} value="{{\App\Models\Admin\Applevel::BACHELOR_LEVEL}}">{{\App\Models\Admin\Applevel::BACHELOR_LEVEL}}</option>
+                  <option{{selected(isset($level)?$level->name:'',\App\Models\Admin\Applevel::MASTER_LEVEL)}} value="{{\App\Models\Admin\Applevel::MASTER_LEVEL}}">{{\App\Models\Admin\Applevel::MASTER_LEVEL}}</option>
+                  <option{{selected(isset($level)?$level->name:'',\App\Models\Admin\Applevel::DIPLOMA_LEVEL)}} value="{{\App\Models\Admin\Applevel::DIPLOMA_LEVEL}}">{{\App\Models\Admin\Applevel::DIPLOMA_LEVEL}}</option>
+                  <option{{selected(isset($level)?$level->name:'',\App\Models\Admin\Applevel::CERTIFICATE_LEVEL)}} value="{{\App\Models\Admin\Applevel::CERTIFICATE_LEVEL}}">{{\App\Models\Admin\Applevel::CERTIFICATE_LEVEL}}</option>
+                  <option{{selected(isset($level)?$level->name:'',\App\Models\Admin\Applevel::POSTGRADUATE_LEVEL)}} value="{{\App\Models\Admin\Applevel::POSTGRADUATE_LEVEL}}">{{\App\Models\Admin\Applevel::POSTGRADUATE_LEVEL}}</option>
+
+                </select>
+                </div>
                 </div>
 
                 <!-- /.card-body -->

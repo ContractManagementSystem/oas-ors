@@ -67,7 +67,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('permissions.index')}}" class="nav-link">
+                <a href="{{route('academic.index')}}" class="nav-link">
                   <i class="fa-fw fas fa-unlock-alt nav-icon"></i>
                   <p>Academic Year</p>
                 </a>
@@ -85,7 +85,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('level.index') }}" class="nav-link">
+                  <i class="fa-fw fas fa-file-alt nav-icon"></i>
+                  <p>Application Level</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('programme.index') }}" class="nav-link">
                   <i class="fa-fw fas fa-file-alt nav-icon"></i>
                   <p>Programme</p>
                 </a>

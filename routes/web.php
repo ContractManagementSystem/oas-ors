@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AcademicYearController;
+use App\Http\Controllers\Admin\AppLevelController;
 use App\Http\Controllers\Admin\ApplicationLevelController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,6 @@ Route::view('/datetable',  view: 'oas/datatable')->name('datatable');
 Route::resource('campus',CampusController::class);
 Route::resource('intake', IntakeController::class);
 Route::resource('programme',ProgrammeController::class);
-Route::resource('level', ApplicationLevelController::class);
+Route::resource('level', AppLevelController::class);
 Route::resource('academic',AcademicYearController::class);
 });

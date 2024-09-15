@@ -6,7 +6,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CampusRequest extends FormRequest
+class AppLevelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +26,16 @@ class CampusRequest extends FormRequest
     public function rules()
     {
         $rules= [
-           'campus.name'=>'required',
+           'level.name'=>'required',
+
     ];
     $request = Request::capture();
-    $intakearray=$request->get('campus');
+    $intakearray=$request->get('level');
     if(empty($intakearray)) {//new intake
-        $rules['campus.name'] = ['required', Rule::unique('campuses', 'name')];
-
-    }
+        $rules['level.name'] = ['required', Rule::unique('applevels', 'name')];
+     }
     else{//update
-        $rules['campus.name'] = ['required', Rule::unique('campuses', 'name')->ignore(id: $intakearray['id'])];
+        $rules['level.name'] = ['required', Rule::unique('applevels', 'name')->ignore(id: $intakearray['id'])];
 
     }
     return $rules;
@@ -43,8 +43,7 @@ class CampusRequest extends FormRequest
    public function messages()
    {
     return [
-     'campus.name.required'=>'Intake Name required',
-
+     'level.name.required'=>'Application level  required',
     ];
    }
 }

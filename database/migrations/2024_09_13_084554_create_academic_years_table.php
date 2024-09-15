@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->date('start_d')->nullable();
             $table->date('end_d')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

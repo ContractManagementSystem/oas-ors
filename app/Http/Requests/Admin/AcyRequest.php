@@ -6,7 +6,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CampusRequest extends FormRequest
+class AcyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +26,16 @@ class CampusRequest extends FormRequest
     public function rules()
     {
         $rules= [
-           'campus.name'=>'required',
+           'academic.name'=>'required',
     ];
     $request = Request::capture();
-    $intakearray=$request->get('campus');
+    $intakearray=$request->get('academic');
     if(empty($intakearray)) {//new intake
-        $rules['campus.name'] = ['required', Rule::unique('campuses', 'name')];
+        $rules['academic.name'] = ['required', Rule::unique('academic_years', 'name')];
 
     }
     else{//update
-        $rules['campus.name'] = ['required', Rule::unique('campuses', 'name')->ignore(id: $intakearray['id'])];
+        $rules['academic.name'] = ['required', Rule::unique('academic_years', 'name')->ignore(id: $intakearray['id'])];
 
     }
     return $rules;
@@ -43,7 +43,7 @@ class CampusRequest extends FormRequest
    public function messages()
    {
     return [
-     'campus.name.required'=>'Intake Name required',
+     'academic.name.required'=>'Intake Name required',
 
     ];
    }

@@ -17,33 +17,41 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create Intake</h3>
+                <h3 class="card-title"> @if(isset($intake))
+                    Edit
+                    @else
+                       Create
+                @endif Intake</h3>
+
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="{{route('intake.store')}}">
+              <form method="post" action="{{route('intake.store')}}" onsubmit="return validateforminputs(this)">
+                <input type="hidden" name="intake[id]" value="{{isset($intake)?$intake->id:'' }}">
                 @csrf
                 <div class="card-body">
                     <div>
-                @foreach ($errors->all() as $error)
-                    <span class="fs-10 text-danger">{{ $error }}</span><br/>
-                @endforeach
+                        @foreach ($errors->all() as $error)
+                        <span class="fs-10 text-danger">{{ $error }}</span><br/>
+                    @endforeach
             </div>
                   <div class="form-group">
-                    <label>Intake Name</label>
-                    <select class="form-control select 2" name="name">
-                     <option value="">Select intake Name</option>
-                      <option>{{\App\Models\Admin\Intake::INTAKE_OCTOBER}}</option>
-                      <option>{{\App\Models\Admin\Intake::INTAKE_MARCH}}</option>
+                    <label for="intake">Intake Name</label>
+                    <select class="form-control select 2" name="intake[name]">
+                      <option value=""></option>
+                      <option
+                          {{selected(isset($intake)?$intake->name:'',\App\Models\Admin\Intake::INTAKE_OCTOBER)}} value="{{\App\Models\Admin\Intake::INTAKE_OCTOBER}}">{{\App\Models\Admin\Intake::INTAKE_OCTOBER}}</option>
+                      <option
+                          {{selected(isset($intake)?$intake->name:'',\App\Models\Admin\Intake::INTAKE_MARCH)}} value="{{\App\Models\Admin\Intake::INTAKE_MARCH}}">{{\App\Models\Admin\Intake::INTAKE_MARCH}}</option>
                     </select>
-
                     </div>
                   <div class="form-group">
-                    <label>Academic Year</label>
-                    <select class="form-control select 2" name="acy">
-                     <option value="">Select Academic Year</option>
+                    <label for="acy">Acadeintmic Year</label>
+                    <select id="acy" class="form-control select 2" name="intake[acy]">
+                     <option value=""></option>
                       @foreach ($academic as $acy)
-                      <option value="{{$acy->id}}">{{$acy->name}}</option>
+                      <option
+                      {{selected(isset($intake)?$intake->acy:'',$acy->id)}} value="{{$acy->id}}">{{$acy->name}}</option>
                       @endforeach
                     </select>
 

@@ -8,14 +8,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-           <a href="{{route('programs.create')}}" class="btn btn-primary">Add program</a>
+           <a href="{{route('programme.create')}}" class="btn btn-primary">Add programme</a>
           </div>
           <div class="col-sm-6">
           @if(session('success'))
               <div id="success-message" class="alert alert-success">
                   {{ session('success') }}
               </div>
-          @endif  
+          @endif
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -28,7 +28,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">program List</h3>
+                <h3 class="card-title">programme List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -37,35 +37,31 @@
                   <tr>
                     <th> </th>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Photo</th>
-                    <th>Description</th>
-                    <th>Published</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Short</th>
+                    <th>Application Level</th>
+                    <th>Campus Name</th>
+                    <th>Intake</th>
                     <th> &nbsp; </th>
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($programs as $program)
+                    @php($count=1)
+                    @foreach ($programs as $c)
                     <tr>
+                    <td></td>
+                    <td>{{$count++}}</td>
+                    <td>{{$c->name}}</td>
+                    <td>{{ $c->code}}</td>
+                    <td>{{ $c->short }}</td>
+                    <td>{{ $c->appname }}</td>
+                    <td>{{ $c->cname }}</td>
+                    <td>{{ $c->intname }}</td>
                     <td>
-                        <form action="">
-                        <input type="hidden" name="" value="0">
-                        <input type="checkbox" id="" name="" value="1" {{ old('') ? 'checked' : '' }}>
-                        </form>
-                    </td>
-                    <td>{{$program->id}}</td>
-                    <td>{{$program->title}}</td>
-                    <td>
-                        <img src="/storage/{{$program->photo}}" alt="program" height="50px" width="100px">
-                    </td>
-                    <td>{{$program->description}}</td>
-                    <td>{{$program->is_published == 1 ? 'Yes' : 'No' }}</td>
-                    <td>
-                    <a class="btn btn-xs btn-primary" href="{{route('programs.show', $program)}}">{{'view'}}</a>
-                       
-                    <a class="btn btn-xs btn-info" href="{{route('programs.edit', $program)}}">{{'edit'}}</a>
-                       
-                    <form action="{{route('programs.destroy', $program)}}" method="post">
+                        <form action="{{route('intake.destroy', $c->id)}}" method="post">
+                    <a class="btn btn-xs btn-primary" href="{{route('intake.show', $c->id)}}">{{'view'}}</a>
+                    <a class="btn btn-xs btn-info" href="{{route('programme.edit', $c->id)}}">{{'edit'}}</a>
                       @csrf
                       @method('DELETE')
                       <button class="btn btn-xs btn-danger" type="submit" onclick="return confirm('Are you Sure?')">{{'delete'}}</button>

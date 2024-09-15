@@ -17,16 +17,17 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title"> @if(isset($campus))
+                <h3 class="card-title"> @if(isset($year))
                     Edit
                     @else
                        Create
-                @endif Campus</h3>
+                @endif AcademicYear</h3>
               </div>
+
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="{{route('campus.store')}}" onsubmit="return validateforminputs(this)">
-                <input type="hidden" name="campus[id]" value="{{isset($campus)?$campus->id:'' }}">
+              <form method="post" action="{{route('academic.store')}}" onsubmit="return validateforminputs(this)">
+                <input type="hidden" name="academic[id]" value="{{isset($year)?$year->id:'' }}">
                 @csrf
                 <div class="card-body">
                     <div>
@@ -35,13 +36,21 @@
                 @endforeach
             </div>
                   <div class="form-group">
-                    <label for="title">Campus Name</label>
-                    <input type="text" class="form-control" id="title" name="campus[name]" required
-                    value="{{isset($campus)?$campus->name:''}}">
+                    <label for="title">Academic Year</label>
+                    <input type="text" class="form-control" id="title" name="academic[name]" required
+                    value="{{isset($year)?$year->name:''}}">
                   </div>
-
+                  <div class="form-group">
+                    <label for="title">Start Date</label>
+                    <input type="date" class="form-control" id="title" name="academic[start_d]" required
+                    value="{{isset($year)?$year->start_d:''}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="title">End Date</label>
+                    <input type="date" class="form-control" id="title" name="academic[end_d]" required
+                    value="{{isset($year)?$year->end_d:''}}">
+                  </div>
                 </div>
-
                 <!-- /.card-body -->
                 <div class="card-footer">
                             <button class="btn btn-success btn-load btn-lg save-btn" type="submit">

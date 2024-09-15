@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('application_levels', function (Blueprint $table) {
+        Schema::create('applevels', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('application_levels');
+        Schema::dropIfExists('applevels');
     }
 };

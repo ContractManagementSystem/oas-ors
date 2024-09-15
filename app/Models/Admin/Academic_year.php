@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Academic_year extends Model
 {
+    protected $guarded = [];
     use HasFactory;
 }
