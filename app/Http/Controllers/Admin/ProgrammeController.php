@@ -22,7 +22,6 @@ class ProgrammeController extends Controller
     public function index()
     {
         $programs = Programme::list()->get();
-
         return view('admin.programs.index', compact('programs'));
     }
 
