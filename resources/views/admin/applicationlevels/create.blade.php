@@ -17,16 +17,16 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title"> @if(isset($program))
+                <h3 class="card-title"> @if(isset($level))
                     Edit
                     @else
                        Create
-                @endif Programme</h3>
+                @endif Application Level</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="{{route('programme.store')}}" onsubmit="return validateforminputs(this)">
-                <input type="hidden" name="programme[id]" value="{{isset($program)?$program->id:'' }}">
+              <form method="post" action="{{route('level.store')}}" onsubmit="return validateforminputs(this)">
+                <input type="hidden" name="level[id]" value="{{isset($level)?$level->id:'' }}">
                 @csrf
                 <div class="card-body">
                     <div>
